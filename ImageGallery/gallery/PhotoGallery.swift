@@ -23,7 +23,7 @@ class PhotoGallery: UIViewController, UIScrollViewDelegate, ImageLoaderProtocol 
 
     
     @IBOutlet weak var mlblCount: UILabel!
-    fileprivate var mTopNavigation: TopNavigation?
+    var mTopNavigation =  ""
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet var pageControl: UIPageControl!
     let imageLoader: ImageLoader = ImageLoader()
@@ -102,7 +102,7 @@ class PhotoGallery: UIViewController, UIScrollViewDelegate, ImageLoaderProtocol 
    
             }
 
-            prepareNavigation()
+//            prepareNavigation()
 
         }
         
@@ -327,18 +327,18 @@ class PhotoGallery: UIViewController, UIScrollViewDelegate, ImageLoaderProtocol 
     }
 
 
-    func prepareNavigation(){
-        
-        mTopNavigation = TopNavigation.instanceFromNib()
-        mTopNavigation?.mbtnLeft.addTarget(self, action: #selector(btnBack), for: .touchUpInside)
-        self.view.addSubview(mTopNavigation!)
-        
-    }
-    @objc func btnBack(_ sender: UIButton){
-        
-        self.dismiss(animated: true, completion: nil)
-        
-    }
+//    func prepareNavigation(){
+//
+//        mTopNavigation = TopNavigation.instanceFromNib()
+//        mTopNavigation?.mbtnLeft.addTarget(self, action: #selector(btnBack), for: .touchUpInside)
+//        self.view.addSubview(mTopNavigation!)
+//
+//    }
+//    @objc func btnBack(_ sender: UIButton){
+//
+//        self.dismiss(animated: true, completion: nil)
+//
+//    }
 
 
 }
