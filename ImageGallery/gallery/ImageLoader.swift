@@ -1,10 +1,4 @@
-//
-//  ImageLoader.swift
-//  tossdown
-//
-//  Created by MacMini on 8/7/17.
-//  Copyright © 2017 tossdown. All rights reserved.
-//
+
 
 import Foundation
 import UIKit
