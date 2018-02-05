@@ -20,6 +20,7 @@ class ViewController: UIViewController, ImageGalleryDelegate {
         "https://i.imgur.com/2AWxv4Kb.jpg"
     ]
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -37,12 +38,10 @@ class ViewController: UIViewController, ImageGalleryDelegate {
     
     func imageGallery(gallery: ImageGallery, imageForIndex: Int, completion: @escaping (UIImage, Int) -> Void) {
         ImageLoader.load(Image: images[imageForIndex]) { (image, url) in
-            if url == self.images[imageForIndex] {
+            if url == self.images[imageForIndex] && image != nil{
                 completion(image!, imageForIndex)
             }
-            
         }
-        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

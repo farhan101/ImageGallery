@@ -1,11 +1,3 @@
-//
-//  ImageScrollView.swift
-//  tossdown
-//
-//  Created by MacMini on 8/24/17.
-//  Copyright © 2017 tossdown. All rights reserved.
-//
-
 
 //
 //  ImageScrollView.swift
