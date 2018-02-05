@@ -10,6 +10,16 @@ import UIKit
 
 class ViewController: UIViewController, ImageGalleryDelegate {
     
+    
+    fileprivate let images: [String] = [
+        "https://i.imgur.com/fCIQXYz.jpg",
+        "https://i.imgur.com/nXjDbCM.jpg",
+        "https://i.imgur.com/fr45ksmb.jpg",
+        "https://i.imgur.com/amXEetmb.jpg",
+        "https://i.imgur.com/2gTFkQBb.jpg",
+        "https://i.imgur.com/2AWxv4Kb.jpg"
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -22,10 +32,17 @@ class ViewController: UIViewController, ImageGalleryDelegate {
         self.present(gallery, animated: true, completion: nil)
     }
     func numberOfImages(in: ImageGallery) -> Int {
-        return 9
+        return images.count
     }
-    func imageGallery(gallery: ImageGallery, imageForIndex: Int) -> UIImage? {
-        return UIImage(named: imageForIndex.description)
+    
+    func imageGallery(gallery: ImageGallery, imageForIndex: Int, completion: @escaping (UIImage, Int) -> Void) {
+        ImageLoader.load(Image: images[imageForIndex]) { (image, url) in
+            if url == self.images[imageForIndex] {
+                completion(image!, imageForIndex)
+            }
+            
+        }
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

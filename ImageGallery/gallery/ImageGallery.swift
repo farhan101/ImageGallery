@@ -16,14 +16,17 @@ class ImageGallery: UIViewController, UIScrollViewDelegate {
     var delegate: ImageGalleryDelegate?
     fileprivate var numPages: Int = 0
     fileprivate var currentPage: Int = 0
+    fileprivate var loadedIndexes: NSMutableDictionary?
     override func viewDidLoad() {
         super.viewDidLoad()
         
         scrollView.delegate = self
+        loadedIndexes = NSMutableDictionary()
     }
 
     func loadPage(page: Int){
-        if page < 0 || page > (numPages - 1) {
+        //If beyond the bounds or image has already been added at this index... RETURN
+        if page < 0 || page > (numPages - 1) || ((loadedIndexes?.object(forKey: page)) != nil) {
             return
         }
         var frame = scrollView.frame
@@ -32,7 +35,13 @@ class ImageGallery: UIViewController, UIScrollViewDelegate {
         frame.origin.y = 0
         let imageVU = ImageScrollView(frame: frame)
         scrollView.addSubview(imageVU)
-        imageVU.display(image: (delegate?.imageGallery(gallery: self, imageForIndex: currentPage))!)
+        loadedIndexes?[page] = page //Just a flag to indicate that this place has been filled
+        delegate?.imageGallery(gallery: self, imageForIndex: page, completion: { (image, index) in
+            if index == page {
+                imageVU.display(image: image)
+            }
+        })
+        //imageVU.display(image: (delegate?.imageGallery(gallery: self, imageForIndex: currentPage))!)
 
     }
     /// Readjust the scroll view's content size in case the layout has changed.
@@ -44,7 +53,9 @@ class ImageGallery: UIViewController, UIScrollViewDelegate {
         }
         countDisplay.text = (currentPage + 1).description + " / " + numPages.description
         
+        loadPage(page: currentPage - 1)
         loadPage(page: currentPage)
+        loadPage(page: currentPage + 1)
         
     }
     
@@ -55,10 +66,10 @@ class ImageGallery: UIViewController, UIScrollViewDelegate {
         let page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1
         currentPage = Int(page)
         countDisplay.text = (Int(page) + 1).description + " / " + numPages.description
-        
+        loadPage(page: currentPage - 1)
         loadPage(page: currentPage)
+        loadPage(page: currentPage + 1)
         
-
     }
     
     override func viewDidLayoutSubviews() {
@@ -80,5 +91,5 @@ class ImageGallery: UIViewController, UIScrollViewDelegate {
 
 protocol ImageGalleryDelegate{
     func numberOfImages(in : ImageGallery) -> Int
-    func imageGallery(gallery : ImageGallery, imageForIndex: Int) -> UIImage?
+    func imageGallery(gallery : ImageGallery, imageForIndex: Int, completion: @escaping (UIImage, Int) -> Void)
 }

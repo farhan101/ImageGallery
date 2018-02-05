@@ -13,8 +13,6 @@
 		D880BCB42022F49100D0DDE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D880BCB32022F49100D0DDE9 /* Assets.xcassets */; };
 		D880BCB72022F49100D0DDE9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D880BCB52022F49100D0DDE9 /* LaunchScreen.storyboard */; };
 		D880BCC22022F5C900D0DDE9 /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D880BCBF2022F5C900D0DDE9 /* ImageScrollView.swift */; };
-		D880BCC32022F5C900D0DDE9 /* PhotoGallery.xib in Resources */ = {isa = PBXBuildFile; fileRef = D880BCC02022F5C900D0DDE9 /* PhotoGallery.xib */; };
-		D880BCC42022F5C900D0DDE9 /* PhotoGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D880BCC12022F5C900D0DDE9 /* PhotoGallery.swift */; };
 		D880BCC62022F6D100D0DDE9 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D880BCC52022F6D100D0DDE9 /* ImageLoader.swift */; };
 		D880BCCC2022F79700D0DDE9 /* GlobalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D880BCCB2022F79700D0DDE9 /* GlobalData.swift */; };
 		D880BCCE2022F80E00D0DDE9 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D880BCCD2022F80E00D0DDE9 /* Utils.swift */; };
@@ -31,8 +29,6 @@
 		D880BCB62022F49100D0DDE9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D880BCB82022F49100D0DDE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D880BCBF2022F5C900D0DDE9 /* ImageScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageScrollView.swift; sourceTree = "<group>"; };
-		D880BCC02022F5C900D0DDE9 /* PhotoGallery.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoGallery.xib; sourceTree = "<group>"; };
-		D880BCC12022F5C900D0DDE9 /* PhotoGallery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoGallery.swift; sourceTree = "<group>"; };
 		D880BCC52022F6D100D0DDE9 /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		D880BCCB2022F79700D0DDE9 /* GlobalData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalData.swift; sourceTree = "<group>"; };
 		D880BCCD2022F80E00D0DDE9 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -88,8 +84,6 @@
 				D880BCCB2022F79700D0DDE9 /* GlobalData.swift */,
 				D880BCC52022F6D100D0DDE9 /* ImageLoader.swift */,
 				D880BCBF2022F5C900D0DDE9 /* ImageScrollView.swift */,
-				D880BCC12022F5C900D0DDE9 /* PhotoGallery.swift */,
-				D880BCC02022F5C900D0DDE9 /* PhotoGallery.xib */,
 				D880BCD720260DE800D0DDE9 /* ImageGallery.swift */,
 				D880BCD820260DE800D0DDE9 /* ImageGallery.xib */,
 			);
@@ -159,7 +153,6 @@
 				D880BCB42022F49100D0DDE9 /* Assets.xcassets in Resources */,
 				D880BCDA20260DE800D0DDE9 /* ImageGallery.xib in Resources */,
 				D880BCB22022F49100D0DDE9 /* Main.storyboard in Resources */,
-				D880BCC32022F5C900D0DDE9 /* PhotoGallery.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,7 +169,6 @@
 				D880BCC62022F6D100D0DDE9 /* ImageLoader.swift in Sources */,
 				D880BCAD2022F49100D0DDE9 /* AppDelegate.swift in Sources */,
 				D880BCCC2022F79700D0DDE9 /* GlobalData.swift in Sources */,
-				D880BCC42022F5C900D0DDE9 /* PhotoGallery.swift in Sources */,
 				D880BCCE2022F80E00D0DDE9 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
