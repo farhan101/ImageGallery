@@ -45,9 +45,12 @@
                         <constraint firstItem="Obd-GT-Qpn" firstAttribute="leading" secondItem="JgB-cP-yG2" secondAttribute="leading" id="tsv-DH-n57"/>
                     </constraints>
                 </view>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="JcJ-eQ-Ph7">
+                    <rect key="frame" x="177" y="323" width="20" height="20"/>
+                </activityIndicatorView>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d3L-rY-5dx">
                     <rect key="frame" x="0.0" y="70" width="375" height="597"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </scrollView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fl2-Mm-8gi">
                     <rect key="frame" x="5" y="645.5" width="365" height="13.5"/>
@@ -59,11 +62,12 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="d3L-rY-5dx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="6mG-8z-WpA"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="d3L-rY-5dx" secondAttribute="bottom" id="9Qm-tx-DwQ"/>
                 <constraint firstItem="JgB-cP-yG2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="K5O-1H-YSY"/>
+                <constraint firstItem="JcJ-eQ-Ph7" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="M26-hx-k0d"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="d3L-rY-5dx" secondAttribute="trailing" id="QfK-LW-1IG"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Fl2-Mm-8gi" secondAttribute="trailing" constant="5" id="RyK-Ud-v01"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Fl2-Mm-8gi" secondAttribute="bottom" constant="8" id="UMX-Mo-JTE"/>
@@ -71,6 +75,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="JgB-cP-yG2" secondAttribute="trailing" id="dE5-Lp-q5X"/>
                 <constraint firstItem="d3L-rY-5dx" firstAttribute="top" secondItem="JgB-cP-yG2" secondAttribute="bottom" id="gTv-Ga-cTi"/>
                 <constraint firstItem="JgB-cP-yG2" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="hHU-gA-om1"/>
+                <constraint firstItem="JcJ-eQ-Ph7" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="luD-bJ-wwf"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>
