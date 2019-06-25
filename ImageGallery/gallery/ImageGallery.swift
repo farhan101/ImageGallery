@@ -82,13 +82,6 @@ class ImageGallery: UIViewController, UIScrollViewDelegate {
             }
             
         }
-        
-//        delegate?.imageGallery(gallery: self, imageForIndex: page, completion: { (image, index) in
-//            if index == page {
-//                imageVU.display(image: image)
-//            }
-//        })
-
     }
     @objc func playMovie(sender: IndexedButton){
         //print(sender.info!)
@@ -101,7 +94,6 @@ class ImageGallery: UIViewController, UIScrollViewDelegate {
     }
     /// Readjust the scroll view's content size in case the layout has changed.
     fileprivate func adjustScrollView(numPages: Int) {
-        //scrollView.contentSize = CGSize(width: scrollView.frame.width * CGFloat(numPages), height: scrollView.h - topFrame.h)
         scrollView.contentSize = CGSize(width: scrollView.frame.width * CGFloat(numPages), height: scrollView.frame.height - topFrame.frame.height)
         self.numPages = numPages
         if numPages <= 0{
@@ -136,14 +128,10 @@ class ImageGallery: UIViewController, UIScrollViewDelegate {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if firstRun {
-            if let numberOfItems = self.delegate?.numberOfImages(in: self){
-                if numberOfItems > 0{
-                    self.delegate?.imageGallery(completion: { (galleryData) in
-                        self.mImageGalleryData = galleryData
-                        self.adjustScrollView(numPages: numberOfItems)
-                    })
-                }
-            }
+            self.delegate?.imageGallery(completion: { (galleryData) in
+                self.mImageGalleryData = galleryData
+                    self.adjustScrollView(numPages: galleryData?.count ?? 0)
+            })
             firstRun = false
         }
     }
@@ -161,7 +149,5 @@ class ImageGallery: UIViewController, UIScrollViewDelegate {
 }
 
 protocol ImageGalleryDelegate{
-    func numberOfImages(in : ImageGallery) -> Int
-//    func imageGallery(gallery : ImageGallery, imageForIndex: Int, completion: @escaping (UIImage, Int) -> Void)
     func imageGallery(completion: @escaping ([ImageGalleryData]?) -> Void)
 }

@@ -31,24 +31,18 @@ class ViewController: UIViewController, ImageGalleryDelegate {
         gallery.modalTransitionStyle = .crossDissolve
         self.present(gallery, animated: true, completion: nil)
     }
-    func numberOfImages(in: ImageGallery) -> Int {
-        //return images.count
-        return 1
-    }
     func imageGallery(completion: @escaping ([ImageGalleryData]?) -> Void) {
         var collection:[ImageGalleryData] = []
         let data = ImageGalleryData()
         data.mediaUrl = images[0]
         collection.append(data)
+        let data2 = ImageGalleryData()
+        data2.mediaUrl = "https://www.youtube.com/watch?v=XiDgN6TxsHo"
+        data2.videoThumbnail = images[1]
+        collection.append(data2)
         completion(collection)
+        
     }
-//    func imageGallery(gallery: ImageGallery, imageForIndex: Int, completion: @escaping (UIImage, Int) -> Void) {
-//        ImageLoader.load(Image: images[imageForIndex]) { (image, url) in
-//            if url == self.images[imageForIndex] && image != nil{
-//                completion(image!, imageForIndex)
-//            }
-//        }
-//    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
