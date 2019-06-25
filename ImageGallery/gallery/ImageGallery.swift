@@ -7,25 +7,49 @@
 //
 
 import UIKit
+import SDWebImage
+import AVFoundation
+import AVKit
 
+class ImageGalleryData{
+    var videoThumbnail: String?
+    var mediaUrl: String? //Either Image or Video
+    var mediaAsImage: UIImage?
+    var videoThumbnailAsImage: UIImage?
+}
 class ImageGallery: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var topFrame: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var countDisplay: UILabel!
+    @IBOutlet weak var mbtnPlayMovie: IndexedButton!
     var delegate: ImageGalleryDelegate?
+    var pageToJump: Int = 0
+    fileprivate var mImageGalleryData: [ImageGalleryData]?
     fileprivate var numPages: Int = 0
     fileprivate var currentPage: Int = 0
     fileprivate var loadedIndexes: NSMutableDictionary?
+    fileprivate var firstRun: Bool = true
     override func viewDidLoad() {
         super.viewDidLoad()
         
         scrollView.delegate = self
         loadedIndexes = NSMutableDictionary()
+        self.mbtnPlayMovie.addTarget(self, action: #selector(playMovie), for: .allEvents)
     }
 
     func loadPage(page: Int){
         //If beyond the bounds or image has already been added at this index... RETURN
+        self.mbtnPlayMovie.isHidden = true
+        if ((loadedIndexes?.object(forKey: currentPage)) != nil) && page >= 0  && page <= numPages {
+            if let data = self.mImageGalleryData?[currentPage]{
+                if data.videoThumbnail != nil{//Its a movie
+                    self.mbtnPlayMovie.info = data.mediaUrl
+                    self.mbtnPlayMovie.isHidden = false
+                }
+            }
+        }
+        
         if page < 0 || page > (numPages - 1) || ((loadedIndexes?.object(forKey: page)) != nil) {
             return
         }
@@ -36,20 +60,57 @@ class ImageGallery: UIViewController, UIScrollViewDelegate {
         let imageVU = ImageScrollView(frame: frame)
         scrollView.addSubview(imageVU)
         loadedIndexes?[page] = page //Just a flag to indicate that this place has been filled
-        delegate?.imageGallery(gallery: self, imageForIndex: page, completion: { (image, index) in
-            if index == page {
-                imageVU.display(image: image)
+        let downloader : SDWebImageDownloader = SDWebImageDownloader.shared
+        if let media = self.mImageGalleryData?[page]{
+            
+            if media.mediaAsImage != nil{
+                imageVU.display(image: media.mediaAsImage!)
+            }else{
+                var imageURL: URL?
+                if media.videoThumbnail != nil{
+                    imageURL = URL(string: media.videoThumbnail!)
+                }else{
+                    imageURL = URL(string: media.mediaUrl!)
+                }
+                downloader.downloadImage(with: imageURL, options: SDWebImageDownloaderOptions(rawValue: 0), progress: { (one, two, url) in
+                    
+                }) { (image, data, error, status) in
+                    if let image = image{
+                        imageVU.display(image: image)
+                    }
+                }
             }
-        })
-        //imageVU.display(image: (delegate?.imageGallery(gallery: self, imageForIndex: currentPage))!)
+            
+        }
+        
+//        delegate?.imageGallery(gallery: self, imageForIndex: page, completion: { (image, index) in
+//            if index == page {
+//                imageVU.display(image: image)
+//            }
+//        })
 
+    }
+    @objc func playMovie(sender: IndexedButton){
+        //print(sender.info!)
+        let player = AVPlayer(url: URL(string: (sender.info)!)!)
+        let playerController = AVPlayerViewController()
+        playerController.player = player
+        self.present(playerController, animated: true) {
+            player.play()
+        }
     }
     /// Readjust the scroll view's content size in case the layout has changed.
     fileprivate func adjustScrollView(numPages: Int) {
-        scrollView.contentSize = CGSize(width: scrollView.frame.width * CGFloat(numPages), height: scrollView.h - topFrame.h)
+        //scrollView.contentSize = CGSize(width: scrollView.frame.width * CGFloat(numPages), height: scrollView.h - topFrame.h)
+        scrollView.contentSize = CGSize(width: scrollView.frame.width * CGFloat(numPages), height: scrollView.frame.height - topFrame.frame.height)
         self.numPages = numPages
         if numPages <= 0{
             currentPage = 0
+        }
+        if pageToJump > 0{
+            currentPage = pageToJump
+            pageToJump = 0 //Reset. Not to use twice
+            scrollView.setContentOffset(CGPoint(x: scrollView.frame.width * CGFloat(currentPage), y: 0.0), animated: true)
         }
         countDisplay.text = (currentPage + 1).description + " / " + numPages.description
         
@@ -74,7 +135,17 @@ class ImageGallery: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        adjustScrollView(numPages: (delegate?.numberOfImages(in: self))!)
+        if firstRun {
+            if let numberOfItems = self.delegate?.numberOfImages(in: self){
+                if numberOfItems > 0{
+                    self.delegate?.imageGallery(completion: { (galleryData) in
+                        self.mImageGalleryData = galleryData
+                        self.adjustScrollView(numPages: numberOfItems)
+                    })
+                }
+            }
+            firstRun = false
+        }
     }
 
     @IBAction func btnBack(_ sender: UIButton){
@@ -91,5 +162,6 @@ class ImageGallery: UIViewController, UIScrollViewDelegate {
 
 protocol ImageGalleryDelegate{
     func numberOfImages(in : ImageGallery) -> Int
-    func imageGallery(gallery : ImageGallery, imageForIndex: Int, completion: @escaping (UIImage, Int) -> Void)
+//    func imageGallery(gallery : ImageGallery, imageForIndex: Int, completion: @escaping (UIImage, Int) -> Void)
+    func imageGallery(completion: @escaping ([ImageGalleryData]?) -> Void)
 }

@@ -10,7 +10,6 @@ import UIKit
 
 class ViewController: UIViewController, ImageGalleryDelegate {
     
-    
     fileprivate let images: [String] = [
         "https://i.imgur.com/fCIQXYz.jpg",
         "https://i.imgur.com/nXjDbCM.jpg",
@@ -33,16 +32,23 @@ class ViewController: UIViewController, ImageGalleryDelegate {
         self.present(gallery, animated: true, completion: nil)
     }
     func numberOfImages(in: ImageGallery) -> Int {
-        return images.count
+        //return images.count
+        return 1
     }
-    
-    func imageGallery(gallery: ImageGallery, imageForIndex: Int, completion: @escaping (UIImage, Int) -> Void) {
-        ImageLoader.load(Image: images[imageForIndex]) { (image, url) in
-            if url == self.images[imageForIndex] && image != nil{
-                completion(image!, imageForIndex)
-            }
-        }
+    func imageGallery(completion: @escaping ([ImageGalleryData]?) -> Void) {
+        var collection:[ImageGalleryData] = []
+        let data = ImageGalleryData()
+        data.mediaUrl = images[0]
+        collection.append(data)
+        completion(collection)
     }
+//    func imageGallery(gallery: ImageGallery, imageForIndex: Int, completion: @escaping (UIImage, Int) -> Void) {
+//        ImageLoader.load(Image: images[imageForIndex]) { (image, url) in
+//            if url == self.images[imageForIndex] && image != nil{
+//                completion(image!, imageForIndex)
+//            }
+//        }
+//    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
