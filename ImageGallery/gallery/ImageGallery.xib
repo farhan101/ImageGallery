@@ -47,9 +47,9 @@
                         <constraint firstItem="Obd-GT-Qpn" firstAttribute="leading" secondItem="JgB-cP-yG2" secondAttribute="leading" id="tsv-DH-n57"/>
                     </constraints>
                 </view>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="JcJ-eQ-Ph7">
-                    <rect key="frame" x="177.5" y="358.5" width="20" height="20"/>
-                    <color key="color" red="0.58081901069999997" green="0.088427625600000004" blue="0.31863921880000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="JcJ-eQ-Ph7">
+                    <rect key="frame" x="169" y="350" width="37" height="37"/>
+                    <color key="color" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </activityIndicatorView>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d3L-rY-5dx">
                     <rect key="frame" x="0.0" y="70" width="375" height="597"/>
@@ -61,7 +61,7 @@
                         <constraint firstAttribute="width" constant="100" id="DpI-em-iFN"/>
                         <constraint firstAttribute="height" constant="100" id="W6X-KA-PzD"/>
                     </constraints>
-                    <color key="tintColor" red="0.58081901069999997" green="0.088427625600000004" blue="0.31863921880000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <state key="normal" image="movie"/>
                 </button>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fl2-Mm-8gi">
