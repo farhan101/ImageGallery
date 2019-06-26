@@ -37,7 +37,7 @@ class ViewController: UIViewController, ImageGalleryDelegate {
         data.mediaUrl = images[0]
         collection.append(data)
         let data2 = ImageGalleryData()
-        data2.mediaUrl = "https://www.youtube.com/watch?v=XiDgN6TxsHo"
+        data2.mediaUrl = "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"
         data2.videoThumbnail = images[1]
         collection.append(data2)
         completion(collection)
