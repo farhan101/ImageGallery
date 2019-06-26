@@ -15,8 +15,8 @@
 		D880BCB42022F49100D0DDE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D880BCB32022F49100D0DDE9 /* Assets.xcassets */; };
 		D880BCB72022F49100D0DDE9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D880BCB52022F49100D0DDE9 /* LaunchScreen.storyboard */; };
 		D880BCC22022F5C900D0DDE9 /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D880BCBF2022F5C900D0DDE9 /* ImageScrollView.swift */; };
-		D880BCD920260DE800D0DDE9 /* ImageGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D880BCD720260DE800D0DDE9 /* ImageGallery.swift */; };
-		D880BCDA20260DE800D0DDE9 /* ImageGallery.xib in Resources */ = {isa = PBXBuildFile; fileRef = D880BCD820260DE800D0DDE9 /* ImageGallery.xib */; };
+		D880BCD920260DE800D0DDE9 /* MediaGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D880BCD720260DE800D0DDE9 /* MediaGallery.swift */; };
+		D880BCDA20260DE800D0DDE9 /* MediaGallery.xib in Resources */ = {isa = PBXBuildFile; fileRef = D880BCD820260DE800D0DDE9 /* MediaGallery.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,8 +32,8 @@
 		D880BCB62022F49100D0DDE9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D880BCB82022F49100D0DDE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D880BCBF2022F5C900D0DDE9 /* ImageScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageScrollView.swift; sourceTree = "<group>"; };
-		D880BCD720260DE800D0DDE9 /* ImageGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGallery.swift; sourceTree = "<group>"; };
-		D880BCD820260DE800D0DDE9 /* ImageGallery.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageGallery.xib; sourceTree = "<group>"; };
+		D880BCD720260DE800D0DDE9 /* MediaGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaGallery.swift; sourceTree = "<group>"; };
+		D880BCD820260DE800D0DDE9 /* MediaGallery.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MediaGallery.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,8 +102,8 @@
 			children = (
 				23D3197E22C24BC500E241CA /* IndexedButton.swift */,
 				D880BCBF2022F5C900D0DDE9 /* ImageScrollView.swift */,
-				D880BCD720260DE800D0DDE9 /* ImageGallery.swift */,
-				D880BCD820260DE800D0DDE9 /* ImageGallery.xib */,
+				D880BCD720260DE800D0DDE9 /* MediaGallery.swift */,
+				D880BCD820260DE800D0DDE9 /* MediaGallery.xib */,
 			);
 			path = gallery;
 			sourceTree = "<group>";
@@ -171,7 +171,7 @@
 			files = (
 				D880BCB72022F49100D0DDE9 /* LaunchScreen.storyboard in Resources */,
 				D880BCB42022F49100D0DDE9 /* Assets.xcassets in Resources */,
-				D880BCDA20260DE800D0DDE9 /* ImageGallery.xib in Resources */,
+				D880BCDA20260DE800D0DDE9 /* MediaGallery.xib in Resources */,
 				D880BCB22022F49100D0DDE9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -222,7 +222,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D880BCD920260DE800D0DDE9 /* ImageGallery.swift in Sources */,
+				D880BCD920260DE800D0DDE9 /* MediaGallery.swift in Sources */,
 				D880BCC22022F5C900D0DDE9 /* ImageScrollView.swift in Sources */,
 				D880BCAF2022F49100D0DDE9 /* ViewController.swift in Sources */,
 				23D3197F22C24BC500E241CA /* IndexedButton.swift in Sources */,

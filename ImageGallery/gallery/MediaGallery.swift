@@ -11,13 +11,14 @@ import SDWebImage
 import AVFoundation
 import AVKit
 
-class ImageGalleryData{
+struct ImageGalleryData{
     var videoThumbnail: String?
     var mediaUrl: String? //Either Image or Video
     var mediaAsImage: UIImage?
     var videoThumbnailAsImage: UIImage?
 }
-class ImageGallery: UIViewController, UIScrollViewDelegate {
+
+class MediaGallery: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var topFrame: UIView!
     @IBOutlet weak var scrollView: UIScrollView!

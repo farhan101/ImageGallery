@@ -26,7 +26,7 @@ class ViewController: UIViewController, ImageGalleryDelegate {
     }
 
     @IBAction func actionGallery(_ sender: UIButton) {
-        let gallery = ImageGallery()
+        let gallery = MediaGallery()
         gallery.delegate = self
         gallery.topTitle = "Media Gallery"
         gallery.modalTransitionStyle = .crossDissolve
@@ -34,10 +34,10 @@ class ViewController: UIViewController, ImageGalleryDelegate {
     }
     func imageGallery(completion: @escaping ([ImageGalleryData]?) -> Void) {
         var collection:[ImageGalleryData] = []
-        let data = ImageGalleryData()
+        var data = ImageGalleryData()
         data.mediaUrl = images[0]
         collection.append(data)
-        let data2 = ImageGalleryData()
+        var data2 = ImageGalleryData()
         data2.mediaUrl = "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"
         data2.videoThumbnail = images[1]
         collection.append(data2)
