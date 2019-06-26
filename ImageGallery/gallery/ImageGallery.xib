@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ImageGallery" customModule="ImageGallery" customModuleProvider="target">
             <connections>
                 <outlet property="countDisplay" destination="Fl2-Mm-8gi" id="Min-Uz-Xzg"/>
+                <outlet property="galleryTitle" destination="vHt-ba-lfx" id="4d7-Hx-ckB"/>
                 <outlet property="mbtnPlayMovie" destination="cfe-yp-zFq" id="Jgs-t5-PTe"/>
                 <outlet property="scrollView" destination="d3L-rY-5dx" id="fKl-br-c5R"/>
                 <outlet property="topFrame" destination="JgB-cP-yG2" id="p5E-Sk-CeZ"/>
@@ -39,9 +40,18 @@
                                 <action selector="btnBack:" destination="-1" eventType="touchUpInside" id="vpj-QE-Jz0"/>
                             </connections>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gallery" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vHt-ba-lfx">
+                            <rect key="frame" x="74" y="30" width="227" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
+                        <constraint firstItem="vHt-ba-lfx" firstAttribute="centerY" secondItem="Obd-GT-Qpn" secondAttribute="centerY" id="Hay-Xt-tLe"/>
+                        <constraint firstItem="vHt-ba-lfx" firstAttribute="leading" secondItem="Obd-GT-Qpn" secondAttribute="trailing" constant="10" id="IQo-le-jR9"/>
+                        <constraint firstAttribute="trailing" secondItem="vHt-ba-lfx" secondAttribute="trailing" constant="74" id="P00-J0-Qc9"/>
                         <constraint firstItem="Obd-GT-Qpn" firstAttribute="centerY" secondItem="JgB-cP-yG2" secondAttribute="centerY" multiplier="1.1" id="eYY-Za-cLc"/>
                         <constraint firstAttribute="height" constant="70" id="fGW-ki-DDP"/>
                         <constraint firstItem="Obd-GT-Qpn" firstAttribute="leading" secondItem="JgB-cP-yG2" secondAttribute="leading" id="tsv-DH-n57"/>

@@ -23,6 +23,8 @@ class ImageGallery: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var countDisplay: UILabel!
     @IBOutlet weak var mbtnPlayMovie: IndexedButton!
+    @IBOutlet weak var galleryTitle: UILabel!
+    var topTitle: String = "Gallery"
     var delegate: ImageGalleryDelegate?
     var pageToJump: Int = 0
     fileprivate var mImageGalleryData: [ImageGalleryData]?
@@ -128,11 +130,12 @@ class ImageGallery: UIViewController, UIScrollViewDelegate {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if firstRun {
+            firstRun = false
+            self.galleryTitle.text = topTitle
             self.delegate?.imageGallery(completion: { (galleryData) in
                 self.mImageGalleryData = galleryData
                     self.adjustScrollView(numPages: galleryData?.count ?? 0)
             })
-            firstRun = false
         }
     }
 

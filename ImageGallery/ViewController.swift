@@ -28,6 +28,7 @@ class ViewController: UIViewController, ImageGalleryDelegate {
     @IBAction func actionGallery(_ sender: UIButton) {
         let gallery = ImageGallery()
         gallery.delegate = self
+        gallery.topTitle = "Media Gallery"
         gallery.modalTransitionStyle = .crossDissolve
         self.present(gallery, animated: true, completion: nil)
     }
