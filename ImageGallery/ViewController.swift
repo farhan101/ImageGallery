@@ -34,18 +34,7 @@ class ViewController: UIViewController, ImageGalleryDelegate {
         gallery.modalTransitionStyle = .crossDissolve
         self.present(gallery, animated: true, completion: nil)
     }
-    func imageGallery(completion: @escaping ([ImageGalleryData]?) -> Void) {
-        var collection:[ImageGalleryData] = []
-        var data = ImageGalleryData()
-        data.mediaUrl = images[0]
-        collection.append(data)
-        var data2 = ImageGalleryData()
-        data2.mediaUrl = "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"
-        data2.videoThumbnail = images[1]
-        collection.append(data2)
-        completion(collection)
-        
-    }
+                                 
     func imageGallery(completion: @escaping ([MediaRecord]?) -> Void) {
         var collection:[MediaRecord] = []
         var data = ImageRecord<String>()

@@ -11,13 +11,6 @@ import SDWebImage
 import AVFoundation
 import AVKit
 
-struct ImageGalleryData{
-    var videoThumbnail: String?
-    var mediaUrl: String? //Either Image or Video
-    var mediaAsImage: UIImage?
-    var videoThumbnailAsImage: UIImage?
-}
-
 protocol MediaRecord{
     
 }
@@ -66,13 +59,8 @@ class MediaGallery: UIViewController, UIScrollViewDelegate {
                     }
                     self.mbtnPlayMovie.isHidden = false
                 }
-//                if data.videoThumbnail != nil{//Its a movie
-//                    self.mbtnPlayMovie.info = data.mediaUrl
-//                    self.mbtnPlayMovie.isHidden = false
-//                }
             }
         }
-        
         if page < 0 || page > (numPages - 1) || ((loadedIndexes?.object(forKey: page)) != nil) {
             return
         }
@@ -115,25 +103,6 @@ class MediaGallery: UIViewController, UIScrollViewDelegate {
                 let m = media as? ImageRecord<UIImage>
                 imageVU.display(image: (m?.media)!)
             }
-            
-//            if media.mediaAsImage != nil{
-//                imageVU.display(image: media.mediaAsImage!)
-//            }else{
-//                var imageURL: URL?
-//                if media.videoThumbnail != nil{
-//                    imageURL = URL(string: media.videoThumbnail!)
-//                }else{
-//                    imageURL = URL(string: media.mediaUrl!)
-//                }
-//                downloader.downloadImage(with: imageURL, options: SDWebImageDownloaderOptions(rawValue: 0), progress: { (one, two, url) in
-//                    
-//                }) { (image, data, error, status) in
-//                    if let image = image{
-//                        imageVU.display(image: image)
-//                    }
-//                }
-//            }
-            
         }
     }
     @objc func playMovie(sender: IndexedButton){
@@ -203,6 +172,5 @@ class MediaGallery: UIViewController, UIScrollViewDelegate {
 }
 
 protocol ImageGalleryDelegate{
-    //func imageGallery(completion: @escaping ([ImageGalleryData]?) -> Void)
     func imageGallery(completion: @escaping ([MediaRecord]?) -> Void)
 }
