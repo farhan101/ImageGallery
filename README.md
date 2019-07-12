@@ -12,8 +12,8 @@ Download the sample project and pick the following files to add to your project
 
 ### Implement the Delegate ImageGalleryDelegate
 ```
-  func imageGallery(completion: @escaping ([MediaRecord]?) -> Void) {
-        var collection:[MediaRecord] = []
+  func imageGallery(completion: @escaping ([MediaBase]?) -> Void) {
+        var collection:[MediaBase] = []
         //1. Pass Image as url string
         var data = ImageRecord<String>()
         data.media = images[0]
