@@ -35,8 +35,8 @@ class ViewController: UIViewController, ImageGalleryDelegate {
         self.present(gallery, animated: true, completion: nil)
     }
                                  
-    func imageGallery(completion: @escaping ([MediaRecord]?) -> Void) {
-        var collection:[MediaRecord] = []
+    func imageGallery(completion: @escaping ([MediaBase]?) -> Void) {
+        var collection:[MediaBase] = []
         //1. Pass Image as url string
         var data = ImageRecord<String>()
         data.media = images[0]

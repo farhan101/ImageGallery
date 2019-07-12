@@ -11,16 +11,31 @@ import SDWebImage
 import AVFoundation
 import AVKit
 
-protocol MediaRecord{
+protocol MediaBase{}
+
+protocol Media: MediaBase{
+    associatedtype MediaType
+    var media: MediaType? {get set}
+}
+protocol Video: Media{
+    associatedtype ThumbnailType
+    var thumbnail: ThumbnailType?{get set}
+}
+protocol Image: Media {
     
 }
-struct VideoRecord<TypeOfMedia,TypeOfThumbnail>: MediaRecord{
+struct VideoRecord<TypeOfMedia,TypeOfThumbnail>: Video{
+    
+    typealias MediaType = TypeOfMedia
+    typealias ThumbnailType = TypeOfThumbnail
     var media: TypeOfMedia?
     var thumbnail: TypeOfThumbnail?
 }
-struct ImageRecord<TypeOfImage>: MediaRecord{
+struct ImageRecord<TypeOfImage>: Image{
+    typealias MediaType = TypeOfImage
     var media: TypeOfImage?
 }
+
 
 class MediaGallery: UIViewController, UIScrollViewDelegate {
 
@@ -33,7 +48,7 @@ class MediaGallery: UIViewController, UIScrollViewDelegate {
     var delegate: ImageGalleryDelegate?
     var pageToJump: Int = 0
     //fileprivate var mImageGalleryData: [ImageGalleryData]?
-    fileprivate var mImageGalleryData: [MediaRecord]?
+    fileprivate var mImageGalleryData: [MediaBase]?
     fileprivate var numPages: Int = 0
     fileprivate var currentPage: Int = 0
     fileprivate var loadedIndexes: NSMutableDictionary?
@@ -172,5 +187,5 @@ class MediaGallery: UIViewController, UIScrollViewDelegate {
 }
 
 protocol ImageGalleryDelegate{
-    func imageGallery(completion: @escaping ([MediaRecord]?) -> Void)
+    func imageGallery(completion: @escaping ([MediaBase]?) -> Void)
 }
