@@ -18,6 +18,17 @@ struct ImageGalleryData{
     var videoThumbnailAsImage: UIImage?
 }
 
+protocol MediaRecord{
+    
+}
+struct VideoRecord<TypeOfMedia,TypeOfThumbnail>: MediaRecord{
+    var media: TypeOfMedia?
+    var thumbnail: TypeOfThumbnail?
+}
+struct ImageRecord<TypeOfImage>: MediaRecord{
+    var media: TypeOfImage?
+}
+
 class MediaGallery: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var topFrame: UIView!
@@ -28,7 +39,8 @@ class MediaGallery: UIViewController, UIScrollViewDelegate {
     var topTitle: String = "Gallery"
     var delegate: ImageGalleryDelegate?
     var pageToJump: Int = 0
-    fileprivate var mImageGalleryData: [ImageGalleryData]?
+    //fileprivate var mImageGalleryData: [ImageGalleryData]?
+    fileprivate var mImageGalleryData: [MediaRecord]?
     fileprivate var numPages: Int = 0
     fileprivate var currentPage: Int = 0
     fileprivate var loadedIndexes: NSMutableDictionary?
@@ -46,10 +58,18 @@ class MediaGallery: UIViewController, UIScrollViewDelegate {
         self.mbtnPlayMovie.isHidden = true
         if ((loadedIndexes?.object(forKey: currentPage)) != nil) && page >= 0  && page <= numPages {
             if let data = self.mImageGalleryData?[currentPage]{
-                if data.videoThumbnail != nil{//Its a movie
-                    self.mbtnPlayMovie.info = data.mediaUrl
+                if data is VideoRecord<String, String> || data is VideoRecord<String, UIImage>{
+                    if let link = (data as? VideoRecord<String,String>)?.media{
+                        self.mbtnPlayMovie.info = link
+                    }else if let link = (data as? VideoRecord<String,UIImage>)?.media{
+                        self.mbtnPlayMovie.info = link
+                    }
                     self.mbtnPlayMovie.isHidden = false
                 }
+//                if data.videoThumbnail != nil{//Its a movie
+//                    self.mbtnPlayMovie.info = data.mediaUrl
+//                    self.mbtnPlayMovie.isHidden = false
+//                }
             }
         }
         
@@ -65,24 +85,54 @@ class MediaGallery: UIViewController, UIScrollViewDelegate {
         loadedIndexes?[page] = page //Just a flag to indicate that this place has been filled
         let downloader : SDWebImageDownloader = SDWebImageDownloader.shared
         if let media = self.mImageGalleryData?[page]{
-            
-            if media.mediaAsImage != nil{
-                imageVU.display(image: media.mediaAsImage!)
-            }else{
-                var imageURL: URL?
-                if media.videoThumbnail != nil{
-                    imageURL = URL(string: media.videoThumbnail!)
-                }else{
-                    imageURL = URL(string: media.mediaUrl!)
-                }
-                downloader.downloadImage(with: imageURL, options: SDWebImageDownloaderOptions(rawValue: 0), progress: { (one, two, url) in
-                    
-                }) { (image, data, error, status) in
-                    if let image = image{
-                        imageVU.display(image: image)
+            print(type(of: media))
+            if media is VideoRecord<String, String>{
+                if let m = media as? VideoRecord<String, String>{
+                    if let imageURL: URL = URL(string: m.thumbnail ?? ""){
+                        downloader.downloadImage(with: imageURL, options: SDWebImageDownloaderOptions(rawValue: 0), progress: { (one, two, url) in
+                        }) { (image, data, error, status) in
+                            if let image = image{
+                                imageVU.display(image: image)
+                            }
+                        }
                     }
                 }
+            }else if media is VideoRecord<String, UIImage>{
+                let m = media as? VideoRecord<String, UIImage>
+                imageVU.display(image: (m?.thumbnail)!)
+            }else if media is ImageRecord<String>{
+                if let m = media as? ImageRecord<String>{
+                    if let imageURL: URL = URL(string: m.media ?? ""){
+                        downloader.downloadImage(with: imageURL, options: SDWebImageDownloaderOptions(rawValue: 0), progress: { (one, two, url) in
+                        }) { (image, data, error, status) in
+                            if let image = image{
+                                imageVU.display(image: image)
+                            }
+                        }
+                    }
+                }
+            }else if media is ImageRecord<UIImage>{
+                let m = media as? ImageRecord<UIImage>
+                imageVU.display(image: (m?.media)!)
             }
+            
+//            if media.mediaAsImage != nil{
+//                imageVU.display(image: media.mediaAsImage!)
+//            }else{
+//                var imageURL: URL?
+//                if media.videoThumbnail != nil{
+//                    imageURL = URL(string: media.videoThumbnail!)
+//                }else{
+//                    imageURL = URL(string: media.mediaUrl!)
+//                }
+//                downloader.downloadImage(with: imageURL, options: SDWebImageDownloaderOptions(rawValue: 0), progress: { (one, two, url) in
+//                    
+//                }) { (image, data, error, status) in
+//                    if let image = image{
+//                        imageVU.display(image: image)
+//                    }
+//                }
+//            }
             
         }
     }
@@ -153,5 +203,6 @@ class MediaGallery: UIViewController, UIScrollViewDelegate {
 }
 
 protocol ImageGalleryDelegate{
-    func imageGallery(completion: @escaping ([ImageGalleryData]?) -> Void)
+    //func imageGallery(completion: @escaping ([ImageGalleryData]?) -> Void)
+    func imageGallery(completion: @escaping ([MediaRecord]?) -> Void)
 }
