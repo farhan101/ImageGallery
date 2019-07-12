@@ -51,7 +51,7 @@ class ViewController: UIViewController, ImageGalleryDelegate {
         data2.thumbnail = images[1]
         collection.append(data2)
         completion(collection)
-        //3. Pass video thumbnail as UIImage object
+        //4. Pass video thumbnail as UIImage object
         var data2_1 = VideoRecord<String, UIImage>()
         data2_1.media = "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"
         data2_1.thumbnail = UIImage(named: "bunny")
